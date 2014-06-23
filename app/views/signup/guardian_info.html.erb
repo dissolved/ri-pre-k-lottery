@@ -1,0 +1,70 @@
+<div id="status-bar">
+  <div class="step-block">
+    <span class="step-number">1</span>
+    <span class="step-text">Student Information</span>
+  </div>
+  <div class="step-block step-block-current">
+    <span class="step-number">2</span>
+    <span class="step-text">Guardian Information</span>
+  </div>
+  <div class="step-block">
+    <span class="step-number">3</span>
+    <span class="step-text">School Selection</span>
+  </div>
+</div>
+
+<div id="title">
+  Rhode Island Pre-Kindergarten Application
+</div>
+
+
+<div id="info-form"> <!-- This div can probably be scrapped, just need to assign ID for form -->
+  <%= form_for(@applicant, url: wizard_path, method: :put) do |a| %>
+      <h1 id="form-title">Guardian Information</h1>
+
+      <!-- Guardian Name -->
+      <div class="form-row">
+        <h2>Full Name</h2>
+        <div class="form-block">
+          <%= a.text_field :guardian_first_name, class: 'form-value' %>
+          <%= label_tag :guardian_first_name, 'First', class: 'form-label' %>
+        </div>
+        <div class="form-block">
+          <%= a.text_field :guardian_middle_name, class: 'form-value' %>
+          <%= label_tag :guardian_middle_name, 'Middle', class: 'form-label' %>
+        </div>
+        <div class="form-block">
+          <%= a.text_field :guardian_last_name, class: 'form-value' %>
+          <%= label_tag :guardian_last_name, 'Last' , class: 'form-label' %>
+        </div>
+      </div>
+
+      <!-- Guardian Contact Info -->
+      <div class="form-row">
+        <h2>Phone Number</h2>
+        <%= a.text_field :guardian_phone %>
+      </div>
+      <div class="form-row">
+        <h2>E-mail Address</h2>
+        <%= a.text_field :guardian_email %>
+      </div>
+
+      <!-- Relationship -->
+      <div class="form-row">
+        <h2>Relationship to Child</h2>
+        <%= a.select :guardian_relationship, options_for_select(SignupController::RELATIONSHIP_OPTS) %>
+      </div>
+
+      <!-- Household Information -->
+      <div class="form-row">
+        <h2>Number of People in Household</h2>
+        <%= a.text_field :household_member_count %>
+      </div>
+      <div class="form-row">
+        <h2>Annual Household Income</h2>
+        <%= a.select :household_income, options_for_select(SignupController::INCOME_OPTS) %>
+      </div>
+
+      <%= a.submit %>
+  <% end %>
+</div>

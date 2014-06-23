@@ -1,0 +1,38 @@
+<div id="status-bar">
+  <div class="step-block">
+    <span class="step-number">1</span>
+    <span class="step-text">Student Information</span>
+  </div>
+  <div class="step-block">
+    <span class="step-number">2</span>
+    <span class="step-text">Guardian Information</span>
+  </div>
+  <div class="step-block step-block-current">
+    <span class="step-number">3</span>
+    <span class="step-text">School Selection</span>
+  </div>
+</div>
+
+<div id="title">
+  Rhode Island Pre-Kindergarten Application
+</div>
+
+
+
+<div id="info-form"> <!-- This div can probably be scrapped, just need to assign ID for form in the Rails stuff -->
+    <form>
+      <h1>School Selection</h1>
+      <p>
+        Choose one or more schools for which you'd like your child to be considered for.
+      </p>
+      <% @schools.each do |s| %>
+        <div class="form-school-box">
+            <input type="checkbox"/>
+            <span class="form-school-name"><%= s.name %></span>
+            <span class="form-school-address"><%= s.street %></span>
+            <span class="form-school-address"><%= s.city %>, RI <%= s.zip_code %></span>
+        </div>
+      <% end %>
+      <input type="submit"/>
+    </form>
+</div>

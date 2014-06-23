@@ -1,0 +1,75 @@
+<div id="status-bar">
+  <div class="step-block step-block-current">
+    <span class="step-number">1</span>
+    <span class="step-text">Student Information</span>
+  </div>
+  <div class="step-block">
+    <span class="step-number">2</span>
+    <span class="step-text">Guardian Information</span>
+  </div>
+  <div class="step-block">
+    <span class="step-number">3</span>
+    <span class="step-text">School Selection</span>
+  </div>
+</div>
+
+<div id="title">
+  Rhode Island Pre-Kindergarten Application
+</div>
+
+
+<div id="info-form"> <!-- This div can probably be scrapped, just need to assign ID for form -->
+  <%= form_for(@applicant, url: wizard_path, method: :put) do |a| %>
+      <h1 id="form-title">Student Information</h1>
+
+      <!-- Student Name -->
+      <div class="form-row">
+        <h2>Full Name</h2>
+        <div class="form-block">
+          <%= a.text_field :student_first_name, class: 'form-value' %>
+          <%= label_tag :student_first_name, 'First', class: 'form-label' %>
+        </div>
+        <div class="form-block">
+          <%= a.text_field :student_middle_name, class: 'form-value' %>
+          <%= label_tag :student_middle_name, 'Middle', class: 'form-label' %>
+        </div>
+        <div class="form-block">
+          <%= a.text_field :student_last_name, class: 'form-value' %>
+          <%= label_tag :student_last_name, 'Last' , class: 'form-label' %>
+        </div>
+      </div>
+
+      <!-- Student Address -->
+      <div class="form-row">
+        <h2>Address</h2>
+        <div class="form-block">
+          <%= a.text_field :student_street_address, class: 'form-value' %>
+          <%= label_tag :student_street_address, 'Street Address', class: 'form-label' %>
+        </div>
+        <div class="form-block">
+          <%= a.text_field :student_city , class: 'form-value'%>
+          <%= label_tag :student_city, 'City' , class: 'form-value' %>
+        </div>
+        <div class="form-block">
+          <%= a.text_field :student_zip_code, class: 'form-value' %>
+          <%= label_tag :student_zip_code, 'Zip Code', class: 'form-label' %>
+        </div>
+      </div>
+
+      <!-- Student Misc Info -->
+      <div class="form-row">
+        <h2>District of residency</h2>
+        <%= a.select :district, options_for_select(SignupController::DISTRICT_OPTS) %>
+      </div>
+      <div class="form-row">
+        <h2>Date of Birth</h2>
+        <%= a.date_select :student_birthdate, class: 'form-value' %>
+      </div>
+      <div class="form-row">
+        <h2>Gender</h2>
+        <%= a.select :student_gender, options_for_select(SignupController::GENDER_OPTS) %>
+      </div>
+
+      <%= a.submit %>
+  <% end %>
+</div>
